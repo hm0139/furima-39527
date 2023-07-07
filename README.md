@@ -14,13 +14,14 @@
 
 ### Association
 - has_many :items
+- has_many :buys
 
 ## itemsテーブル
 | Column | Type | Option |
 |-|-|-|
 | id(PK) | integer | null: false |
 | name | string | null: false |
-| descritption | text | null: false |
+| description | text | null: false |
 | price | integer | null: false |
 | category_id | integer | null: false |
 | condition_id | integer | null: false |
@@ -31,3 +32,31 @@
 
 ### Association
 - belongs_to :user
+- has_one :buy
+
+## buysテーブル
+| Column | Type | Option |
+|-|-|-|
+| id(PK) | integer | null :false |
+| user | references | null: false, foreign_key: true |
+| item | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :delivery
+
+### deliveriesテーブル
+| Column | Type | Option |
+|-|-|-|
+| id(PK) | integer | null: false |
+| post_code | string | null: false |
+| prefecture | string | null: false |
+| municipality | string | null: false |
+| address | string | null: false |
+| building_name | string | null: false |
+| telephone_number | string | null: false |
+| buy | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :buy
