@@ -44,19 +44,19 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :delivery
+- has_one :delivery
 
-### deliveryテーブル
+### deliveriesテーブル
 | Column | Type | Option |
 |-|-|-|
 | id(PK) | integer | null: false |
-| post-code | string | null: false |
-| prefectures | string | null: false |
-| municipalities | string | null: false |
+| post_code | string | null: false |
+| prefecture | string | null: false |
+| municipality | string | null: false |
 | address | string | null: false |
-| building-name | string | null: false |
-| telephone-number | string | null: false |
+| building_name | string | null: false |
+| telephone_number | string | null: false |
 | buy | references | null: false, foreign_key: true |
 
 ### Association
-- has_many :buys
+- belongs_to :buys
