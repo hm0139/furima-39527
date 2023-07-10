@@ -5,9 +5,10 @@ const pay = () => {
   if(!url.test(location.pathname)){
     return;
   }
-  const publicKey = gon.public_key
+  
   //const payjp = Payjp(publicKey)
   if (!payjp) {
+    const publicKey = gon.public_key
     payjp = Payjp(publicKey)
   }
   const elements = payjp.elements();
