@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_public_key, only: [:index]
+  before_action :set_public_key
   before_action :move_to_top
 
   def index

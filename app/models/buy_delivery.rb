@@ -11,7 +11,6 @@ class BuyDelivery
     validates :city
     validates :addresses
     validates :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "is invalid. Phone number must be between 10 and 11 digits"}
-    validates :buy_id
   end
 
   def save
