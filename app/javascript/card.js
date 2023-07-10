@@ -1,6 +1,15 @@
+let payjp;
+
 const pay = () => {
+  const url = new RegExp(/\/items\/\d+\/orders/);
+  if(!url.test(location.pathname)){
+    return;
+  }
   const publicKey = gon.public_key
-  const payjp = Payjp(publicKey)
+  //const payjp = Payjp(publicKey)
+  if (!payjp) {
+    payjp = Payjp(publicKey)
+  }
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
