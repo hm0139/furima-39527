@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe BuyDelivery, type: :model do
   before do
+    user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
-    @buy_delivery = FactoryBot.build(:buy_delivery, user_id: item.user_id, item_id: item.id)
+    @buy_delivery = FactoryBot.build(:buy_delivery, user_id: user.id, item_id: item.id)
   end
 
   describe '商品購入' do
@@ -57,6 +58,26 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.phone_number = '080-9999-9999'
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include('Phone number is invalid. Phone number must be between 10 and 11 digits')
+      end
+      it '電話番号が9桁以下では購入できない' do
+        @buy_delivery.phone_number = "123456789"
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include('Phone number is invalid. Phone number must be between 10 and 11 digits')
+      end
+      it '電話番号が12桁以上では購入できない' do
+        @buy_delivery.phone_number = "123456789012"
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include('Phone number is invalid. Phone number must be between 10 and 11 digits')
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @buy_delivery.user_id = nil
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @buy_delivery.item_id = nil
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

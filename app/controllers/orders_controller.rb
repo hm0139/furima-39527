@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :set_public_key
   before_action :move_to_top
+  before_action :item_find
 
   def index
-    @item = Item.find(params[:item_id])
     @buy_delivery = BuyDelivery.new
   end
 
@@ -20,7 +20,6 @@ class OrdersController < ApplicationController
       @buy_delivery.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render 'index', status: :unprocessable_entity
     end
   end
@@ -42,5 +41,9 @@ class OrdersController < ApplicationController
     return unless !user_signed_in? || !item.buy.nil? || current_user.id == item.user.id
 
     redirect_to root_path
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
   end
 end
