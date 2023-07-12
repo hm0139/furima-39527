@@ -1,5 +1,4 @@
 require "active_support/core_ext/integer/time"
-require 'uglifier'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -91,6 +90,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  config.assets.js_compressor = Uglifier.new(harmony: true)
 end
