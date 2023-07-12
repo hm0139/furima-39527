@@ -88,5 +88,6 @@ gem "payjp"
 gem "pry-rails"
 
 group :production do
+  gem 'uglifier'
   gem 'unicorn', '6.1.0'
 end
