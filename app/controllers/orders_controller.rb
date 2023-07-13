@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :set_public_key
   before_action :move_to_top
   before_action :item_find
