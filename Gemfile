@@ -95,3 +95,5 @@ gem "pry-rails"
 group :production do
   gem 'unicorn', '6.1.0'
 end
+
+gem "aws-sdk-s3", require: false
