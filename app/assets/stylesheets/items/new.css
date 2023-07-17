@@ -90,6 +90,10 @@
 }
 
 /* /商品画像 */
+.preview > img{
+  width: 200px;
+  height: auto;
+}
 
 /* 商品名と商品説明 */
 .new-items {
